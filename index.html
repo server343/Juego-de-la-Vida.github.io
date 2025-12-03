@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Juego de la Vida de Conway - Simulación interactiva con controles avanzados">
+    <title>Juego de la Vida de Conway</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">
+                <span class="gradient-text">Juego de la Vida</span>
+                <span class="subtitle">de Conway</span>
+            </h1>
+            <p class="description">Para el mejor papa del mudo</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Controls Panel -->
+            <div class="controls-panel glass-panel">
+                <!-- Playback Controls -->
+                <div class="control-section">
+                    <h3 class="section-title">Control</h3>
+                    <div class="button-group">
+                        <button id="playPauseBtn" class="btn btn-primary" aria-label="Iniciar o pausar">
+                            <span id="playPauseIcon">⏸️</span>
+                            <span id="playPauseText">Pausar</span>
+                        </button>
+                        <button id="stepBtn" class="btn btn-secondary" aria-label="Avanzar un paso">
+                            ⏭️ Paso
+                        </button>
+                        <button id="clearBtn" class="btn btn-danger" aria-label="Limpiar tablero">
+                            🗑️ Limpiar
+                        </button>
+                        <button id="randomBtn" class="btn btn-accent" aria-label="Generar tablero aleatorio">
+                            🎲 Aleatorio
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Speed Control -->
+                <div class="control-section">
+                    <h3 class="section-title">Velocidad</h3>
+                    <div class="slider-container">
+                        <label for="speedSlider" class="slider-label">
+                            <span>🐢 Lento</span>
+                            <span id="speedValue" class="speed-value">5x</span>
+                            <span>🚀 Rápido</span>
+                        </label>
+                        <input type="range" id="speedSlider" min="1" max="10" value="5" class="speed-slider">
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="control-section">
+                    <h3 class="section-title">Estadísticas</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Generación</span>
+                            <span id="generation" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Células Vivas</span>
+                            <span id="population" class="stat-value">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Save/Load Controls -->
+                <div class="control-section">
+                    <h3 class="section-title">Guardar / Cargar</h3>
+                    <div class="save-controls">
+                        <div class="input-group">
+                            <input type="text" id="saveName" placeholder="Nombre de la partida..." class="save-input">
+                            <button id="saveBtn" class="btn btn-success" aria-label="Guardar partida">
+                                💾 Guardar
+                            </button>
+                        </div>
+                        <button id="loadMenuBtn" class="btn btn-info" aria-label="Abrir menú de carga">
+                            📂 Ver Partidas Guardadas
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Canvas -->
+            <div class="game-container glass-panel">
+                <canvas id="gameCanvas" class="game-canvas"></canvas>
+                <div class="canvas-overlay">
+                    <p class="overlay-hint">Haz clic en las células para activarlas/desactivarlas</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Load Modal -->
+    <div id="loadModal" class="modal">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2 class="modal-title">Partidas Guardadas</h2>
+                <button id="closeModal" class="close-btn" aria-label="Cerrar">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="savedGamesList" class="saved-games-list">
+                    <!-- Saved games will be dynamically inserted here -->
+                </div>
+                <p id="noGamesMessage" class="no-games-message">No hay partidas guardadas</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
